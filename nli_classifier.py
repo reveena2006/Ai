@@ -1,10 +1,16 @@
 
+import os
 import json
+import gc
 from pathlib import Path
 
-import numpy as np
+import torch
 from sentence_transformers import CrossEncoder
 
+
+# --------------------------------------------------
+# Configuration for low-memory hosting
+# --------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "output"
@@ -16,305 +22,334 @@ FACTCHECK_OUTPUT = OUTPUT_DIR / "nli_factchecks.json"
 ARTICLE_OUTPUT = OUTPUT_DIR / "nli_articles.json"
 
 MODEL_NAME = "cross-encoder/nli-deberta-v3-base"
-MAX_EVIDENCE_CHARS = 2500
-BATCH_SIZE = 16
 
+BATCH_SIZE = 2
+MAX_EVIDENCE_CHARS = 1200
+MAX_RECORDS_PER_SOURCE = 10
+MAX_LENGTH = 384
+
+
+# --------------------------------------------------
+# JSON helpers
+# --------------------------------------------------
 
 def load_json(path):
+    """Load a JSON file safely."""
     if not path.exists():
-        print(f"Input file not found: {path}")
-        return {}
+        print(f"[WARNING] File not found: {path}")
+        return []
 
-    with path.open("r", encoding="utf-8-sig") as file:
-        return json.load(file)
+    try:
+        with path.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        if isinstance(data, list):
+            return data
+
+        if isinstance(data, dict):
+            for key in ("results", "records", "articles", "factchecks", "data"):
+                if isinstance(data.get(key), list):
+                    return data[key]
+
+            return [data]
+
+        return []
+
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"[ERROR] Could not read {path}: {exc}")
+        return []
 
 
 def save_json(path, data):
+    """Write JSON output, creating the output directory if needed."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as file:
-        json.dump(data, file, indent=4, ensure_ascii=False)
+
+    temporary_path = path.with_suffix(path.suffix + ".tmp")
+
+    with temporary_path.open("w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=2)
+
+    os.replace(temporary_path, path)
 
 
-def get_records(data):
-    if isinstance(data, list):
-        return data
+def get_text(record, keys):
+    """Return the first usable text field from a record."""
+    for key in keys:
+        value = record.get(key)
 
-    if isinstance(data, dict):
-        for key in (
-            "results",
-            "ranked_records",
-            "ranked_articles",
-            "articles",
-            "claims",
-            "records",
-            "items",
-        ):
-            if isinstance(data.get(key), list):
-                return data[key]
+        if isinstance(value, str) and value.strip():
+            return value.strip()
 
-    return []
+    return ""
 
 
-def clean_text(value):
-    if not isinstance(value, str):
-        return ""
-
-    return " ".join(value.split()).strip()
-
-
-def extract_evidence(item):
-    """Extract the most informative available text."""
-
-    if not isinstance(item, dict):
-        return clean_text(str(item))
-
-    parts = []
-
-    # Fact-check records often contain claimReview.
-    reviews = item.get("claimReview", [])
-    if isinstance(reviews, dict):
-        reviews = [reviews]
-
-    if isinstance(reviews, list):
-        for review in reviews:
-            if not isinstance(review, dict):
-                continue
-
-            for key in (
-                "title",
-                "textualRating",
-                "reviewBody",
-                "publisher",
-            ):
-                value = clean_text(review.get(key))
-                if value:
-                    parts.append(value)
-
-    # Medical article records.
-    for key in (
-        "title",
-        "abstract",
-        "snippet",
-        "summary",
-        "text",
-        "evidence",
-    ):
-        value = clean_text(item.get(key))
-        if value:
-            parts.append(value)
-
-    # Some records store evidence in nested dictionaries.
-    for key in ("article", "metadata"):
-        nested = item.get(key)
-
-        if isinstance(nested, dict):
-            for nested_key in ("title", "abstract", "snippet", "text"):
-                value = clean_text(nested.get(nested_key))
-                if value:
-                    parts.append(value)
-
-    # Deduplicate repeated pieces while preserving their order.
-    unique_parts = list(dict.fromkeys(parts))
-
-    return " ".join(unique_parts)[:MAX_EVIDENCE_CHARS]
-
-
-def get_label_mapping(model):
-    """Read the actual model label names when available."""
-
-    config = getattr(model.model, "config", None)
-    id2label = getattr(config, "id2label", None)
-
-    if isinstance(id2label, dict) and id2label:
-        mapping = {}
-
-        for index, label in id2label.items():
-            try:
-                mapping[int(index)] = str(label).lower()
-            except (ValueError, TypeError):
-                continue
-
-        if mapping:
-            return mapping
-
-    # This fallback matches the commonly used NLI model ordering.
-    # Verify it against the installed model configuration.
-    print(
-        "Warning: model label mapping unavailable; "
-        "using the documented fallback ordering."
+def get_evidence_text(record):
+    """Extract and shorten evidence text to limit memory use."""
+    text = get_text(
+        record,
+        (
+            "text",
+            "snippet",
+            "content",
+            "abstract",
+            "description",
+            "summary",
+            "claim",
+            "title",
+        ),
     )
 
-    return {
-        0: "contradiction",
-        1: "entailment",
-        2: "neutral",
-    }
+    if not text:
+        text = str(record.get("title", ""))
 
+    return text[:MAX_EVIDENCE_CHARS]
+
+
+def get_claim_text(record):
+    """Extract the health claim being checked."""
+    return get_text(
+        record,
+        (
+            "claim",
+            "query",
+            "health_claim",
+            "statement",
+            "original_claim",
+        ),
+    )
+
+
+# --------------------------------------------------
+# NLI label helpers
+# --------------------------------------------------
 
 def normalize_label(label):
-    label = str(label).lower()
+    """Normalize model labels into standard NLI classes."""
+    label = str(label).strip().lower()
 
-    if "contrad" in label:
+    if "contradiction" in label:
         return "contradiction"
 
-    if "entail" in label or "support" in label:
+    if "entailment" in label:
         return "entailment"
 
     if "neutral" in label:
         return "neutral"
 
-    return "unknown"
+    return label
 
 
-def classify_records(claim, items, model, label_mapping):
-    prepared = []
+def get_label_names(model):
+    """Read class labels from the loaded model configuration."""
+    try:
+        config = model.model.config
+        id2label = getattr(config, "id2label", {}) or {}
 
-    for item in items:
-        evidence = extract_evidence(item)
+        labels = {}
 
-        if len(evidence) < 20:
-            continue
+        for index, label in id2label.items():
+            try:
+                labels[int(index)] = normalize_label(label)
+            except (TypeError, ValueError):
+                continue
 
-        prepared.append((item, evidence))
+        if labels:
+            return labels
 
-    if not prepared:
+    except Exception as exc:
+        print(f"[WARNING] Could not read model labels: {exc}")
+
+    # Fallback for the common DeBERTa NLI label mapping.
+    return {
+        0: "contradiction",
+        1: "neutral",
+        2: "entailment",
+    }
+
+
+# --------------------------------------------------
+# Classification
+# --------------------------------------------------
+
+def classify_records(records, model, label_names, source_name):
+    """Classify evidence records in small batches."""
+    if not records:
+        print(f"[INFO] No {source_name} records to classify.")
         return []
 
-    # NLI pair order:
-    # premise = retrieved evidence
-    # hypothesis = claim being evaluated
-    pairs = [
-        (evidence, claim)
-        for _, evidence in prepared
-    ]
-
-    raw_scores = model.predict(
-        pairs,
-        batch_size=BATCH_SIZE,
-        show_progress_bar=True,
-        apply_softmax=True,
-    )
-
-    raw_scores = np.asarray(raw_scores)
-
-    if raw_scores.ndim == 1:
-        raw_scores = raw_scores.reshape(1, -1)
-
+    records = records[:MAX_RECORDS_PER_SOURCE]
     results = []
 
-    for (item, evidence), scores in zip(prepared, raw_scores):
-        scores = scores.tolist()
+    claim_pairs = []
+    valid_indices = []
 
-        score_map = {}
-        for index, score in enumerate(scores):
-            raw_label = label_mapping.get(index, f"label_{index}")
-            label = normalize_label(raw_label)
+    for index, record in enumerate(records):
+        if not isinstance(record, dict):
+            continue
 
-            if label != "unknown":
-                score_map[label] = float(score)
+        claim = get_claim_text(record)
+        evidence = get_evidence_text(record)
 
-        if not score_map:
-            predicted_label = "unknown"
-            confidence = None
-        else:
-            predicted_label = max(
-                score_map,
-                key=score_map.get,
+        if not claim or not evidence:
+            updated = dict(record)
+            updated["nli_label"] = "unavailable"
+            updated["nli_confidence"] = None
+            updated["nli_scores"] = {}
+            updated["nli_evidence_text"] = evidence
+            results.append((index, updated))
+            continue
+
+        # Premise = evidence; hypothesis = claim.
+        claim_pairs.append([evidence, claim])
+        valid_indices.append(index)
+
+    predictions_by_index = {}
+
+    if claim_pairs:
+        print(
+            f"[INFO] Classifying {len(claim_pairs)} "
+            f"{source_name} records with batch size {BATCH_SIZE}."
+        )
+
+        # Process small chunks instead of predicting everything at once.
+        for start in range(0, len(claim_pairs), BATCH_SIZE):
+            end = start + BATCH_SIZE
+            batch_pairs = claim_pairs[start:end]
+
+            predictions = model.predict(
+                batch_pairs,
+                batch_size=BATCH_SIZE,
+                show_progress_bar=False,
+                convert_to_numpy=True,
+                apply_softmax=True,
             )
-            confidence = score_map[predicted_label]
 
-        output_item = dict(item) if isinstance(item, dict) else {
-            "original_record": str(item)
-        }
+            for offset, scores in enumerate(predictions):
+                original_index = valid_indices[start + offset]
 
-        output_item.update({
-            "nli_label": predicted_label,
-            "nli_confidence": confidence,
-            "nli_scores": score_map,
-            "nli_evidence_text": evidence,
-        })
+                score_values = [
+                    float(value) for value in scores
+                ]
 
-        results.append(output_item)
+                label_scores = {
+                    label_names.get(i, f"label_{i}"): score
+                    for i, score in enumerate(score_values)
+                }
 
-    return results
+                if score_values:
+                    best_index = max(
+                        range(len(score_values)),
+                        key=lambda i: score_values[i],
+                    )
 
+                    predicted_label = label_names.get(
+                        best_index,
+                        f"label_{best_index}",
+                    )
+
+                    confidence = score_values[best_index]
+                else:
+                    predicted_label = "unavailable"
+                    confidence = None
+
+                predictions_by_index[original_index] = {
+                    "nli_label": predicted_label,
+                    "nli_confidence": confidence,
+                    "nli_scores": label_scores,
+                }
+
+            del predictions
+            del batch_pairs
+            gc.collect()
+
+    # Preserve input order and original record fields.
+    output = []
+
+    for index, record in enumerate(records):
+        if not isinstance(record, dict):
+            continue
+
+        updated = dict(record)
+        prediction = predictions_by_index.get(index)
+
+        if prediction:
+            updated.update(prediction)
+            updated["nli_evidence_text"] = get_evidence_text(record)
+
+        elif "nli_label" not in updated:
+            updated["nli_label"] = "unavailable"
+            updated["nli_confidence"] = None
+            updated["nli_scores"] = {}
+            updated["nli_evidence_text"] = get_evidence_text(record)
+
+        output.append(updated)
+
+    print(f"[INFO] Finished {source_name}: {len(output)} records.")
+    return output
+
+
+# --------------------------------------------------
+# Main
+# --------------------------------------------------
 
 def main():
-    print("=" * 55)
-    print("NLI EVIDENCE CLASSIFIER")
-    print("=" * 55)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    factcheck_data = load_json(FACTCHECK_INPUT)
-    article_data = load_json(ARTICLE_INPUT)
+    print("[INFO] Loading ranked evidence files...")
 
-    factchecks = get_records(factcheck_data)
-    articles = get_records(article_data)
+    factchecks = load_json(FACTCHECK_INPUT)
+    articles = load_json(ARTICLE_INPUT)
 
-    claim = ""
-
-    for data in (factcheck_data, article_data):
-        if isinstance(data, dict) and data.get("user_claim"):
-            claim = clean_text(data["user_claim"])
-            break
-
-    if not claim:
-        claim = clean_text(input("Enter the health claim: "))
-
-    if not claim:
-        print("No claim supplied. Exiting.")
-        return
+    print(f"[INFO] Fact-check records: {len(factchecks)}")
+    print(f"[INFO] Article records: {len(articles)}")
 
     if not factchecks and not articles:
-        print("No ranked records found. Run retrieval and ranking first.")
+        print(
+            "[ERROR] No ranked evidence found. "
+            "Check the input paths and run the ranking pipeline first."
+        )
         return
 
-    print(f"\nClaim: {claim}")
-    print(f"Fact-check records: {len(factchecks)}")
-    print(f"Article records: {len(articles)}")
+    # CPU inference avoids GPU allocation and is more predictable on
+    # Streamlit Community Cloud, although it may take longer.
+    print(f"[INFO] Loading NLI model: {MODEL_NAME}")
 
-    print(f"\nLoading model: {MODEL_NAME}")
-    model = CrossEncoder(MODEL_NAME)
+    model = CrossEncoder(
+        MODEL_NAME,
+        device="cpu",
+        max_length=MAX_LENGTH,
+    )
 
-    label_mapping = get_label_mapping(model)
-    print("Model labels:", label_mapping)
+    label_names = get_label_names(model)
+    print(f"[INFO] Model labels: {label_names}")
 
     factcheck_results = classify_records(
-        claim, factchecks, model, label_mapping
+        factchecks,
+        model,
+        label_names,
+        "fact-check",
     )
+
+    save_json(FACTCHECK_OUTPUT, factcheck_results)
+    print(f"[INFO] Saved: {FACTCHECK_OUTPUT}")
+
+    # Release temporary objects before processing the second source.
+    gc.collect()
 
     article_results = classify_records(
-        claim, articles, model, label_mapping
+        articles,
+        model,
+        label_names,
+        "PubMed article",
     )
 
-    save_json(
-        FACTCHECK_OUTPUT,
-        {
-            "user_claim": claim,
-            "model": MODEL_NAME,
-            "results": factcheck_results,
-            "total_input_records": len(factchecks),
-            "classified_records": len(factcheck_results),
-        },
-    )
+    save_json(ARTICLE_OUTPUT, article_results)
+    print(f"[INFO] Saved: {ARTICLE_OUTPUT}")
 
-    save_json(
-        ARTICLE_OUTPUT,
-        {
-            "user_claim": claim,
-            "model": MODEL_NAME,
-            "results": article_results,
-            "total_input_records": len(articles),
-            "classified_records": len(article_results),
-        },
-    )
+    del model
+    gc.collect()
 
-    print("\nNLI classification completed.")
-    print(f"Fact-check output: {FACTCHECK_OUTPUT}")
-    print(f"Article output: {ARTICLE_OUTPUT}")
-    print(
-        "\nRemember: NLI measures textual relationships; "
-        "it does not independently verify medical truth."
-    )
+    print("[SUCCESS] NLI classification completed.")
 
 
 if __name__ == "__main__":
