@@ -2,12 +2,20 @@
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+BATCH_SIZE = 16
 
 
 def rank_factchecks(user_claim, records):
-    """Rank fact-check records by cosine similarity to the user claim."""
+    """Rank Google Fact Check API records by cosine similarity."""
+
+    if not isinstance(user_claim, str) or not user_claim.strip():
+        print("Cannot rank fact-checks: the user claim is empty.")
+        return []
+
+    if not isinstance(records, list) or not records:
+        print("No fact-check records were provided.")
+        return []
 
     usable_records = []
 
@@ -21,39 +29,37 @@ def rank_factchecks(user_claim, records):
             usable_records.append({
                 "original_index": index,
                 "record": record,
-                "claim_text": claim_text.strip()
+                "claim_text": claim_text.strip(),
             })
 
     if not usable_records:
-        print("No fact-check records with claim text to rank.")
+        print("No fact-check records with valid claim text were found.")
         return []
 
     print(f"\nLoading SBERT model: {MODEL_NAME}")
-    model = SentenceTransformer(MODEL_NAME)
 
-    # Encode the original user claim.
+    # Explicit CPU use helps avoid GPU-related deployment issues.
+    model = SentenceTransformer(MODEL_NAME, device="cpu")
+
     query_embedding = model.encode(
-        user_claim,
-        convert_to_numpy=True,
-        normalize_embeddings=True
-    )
-
-    # Encode every retrieved fact-check claim.
-    texts = [
-        item["claim_text"] for item in usable_records
-    ]
-
-    embeddings = model.encode(
-        texts,
+        user_claim.strip(),
         convert_to_numpy=True,
         normalize_embeddings=True,
-        show_progress_bar=True
+        show_progress_bar=False,
     )
 
-    # For normalized embeddings, dot product equals cosine similarity.
-    scores = np.dot(embeddings, query_embedding)
+    texts = [item["claim_text"] for item in usable_records]
 
-    # Sort from highest similarity to lowest.
+    # Batch encoding helps control memory usage.
+    embeddings = model.encode(
+        texts,
+        batch_size=BATCH_SIZE,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
+    )
+
+    scores = np.dot(embeddings, query_embedding)
     sorted_indices = np.argsort(scores)[::-1]
 
     results = []
@@ -65,12 +71,11 @@ def rank_factchecks(user_claim, records):
         results.append({
             "rank": rank,
             "original_index": item["original_index"],
-            "similarity_score": round(
-                float(scores[position]), 4
-            ),
+            "similarity_score": round(float(scores[position]), 4),
             "claim_text": item["claim_text"],
             "claim_reviews": record.get("claimReview", []),
-            "original_record": record
+            "original_record": record,
         })
 
+    print(f"Successfully ranked {len(results)} fact-check records.")
     return results
