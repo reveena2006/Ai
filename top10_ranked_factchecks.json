@@ -1,0 +1,373 @@
+{
+    "user_claim": "sugar cause cancer",
+    "ranker": "SBERT",
+    "source_file": "ranked_factchecks.json",
+    "total_ranked_items": 18,
+    "top_n": 10,
+    "results": [
+        {
+            "rank": 1,
+            "original_index": 7,
+            "similarity_score": 0.8115,
+            "claim_text": "Stopping Sugar from diet will kill cancer cells in body",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "THIP Media",
+                        "site": "thip.media"
+                    },
+                    "url": "https://www.thip.media/health-news-fact-check/fact-check-will-stopping-sugar-from-diet-kill-cancer-cells-in-your-body/22064/",
+                    "title": "Will stopping sugar from diet kill Cancer cells in your body?",
+                    "reviewDate": "2021-07-22T10:06:41Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Stopping Sugar from diet will kill cancer cells in body",
+                "claimant": "Social Media Users",
+                "claimDate": "2021-07-21T18:30:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "THIP Media",
+                            "site": "thip.media"
+                        },
+                        "url": "https://www.thip.media/health-news-fact-check/fact-check-will-stopping-sugar-from-diet-kill-cancer-cells-in-your-body/22064/",
+                        "title": "Will stopping sugar from diet kill Cancer cells in your body?",
+                        "reviewDate": "2021-07-22T10:06:41Z",
+                        "textualRating": "False",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 2,
+            "original_index": 6,
+            "similarity_score": 0.7834,
+            "claim_text": "Stopping all sugar intake will cause all cancer cells in your body to die.",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "Full Fact",
+                        "site": "fullfact.org"
+                    },
+                    "url": "https://fullfact.org/online/sugar-lemon-coconut-not-cancer-cures/",
+                    "title": "Lemon juice, coconut oil and stopping all sugar intake won't cure ...",
+                    "reviewDate": "2019-04-12T00:00:00Z",
+                    "textualRating": "There’s no evidence that this will lower the risk of getting cancer, or boost the chances of surviving if you are diagnosed.",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Stopping all sugar intake will cause all cancer cells in your body to die.",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "Full Fact",
+                            "site": "fullfact.org"
+                        },
+                        "url": "https://fullfact.org/online/sugar-lemon-coconut-not-cancer-cures/",
+                        "title": "Lemon juice, coconut oil and stopping all sugar intake won't cure ...",
+                        "reviewDate": "2019-04-12T00:00:00Z",
+                        "textualRating": "There’s no evidence that this will lower the risk of getting cancer, or boost the chances of surviving if you are diagnosed.",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 3,
+            "original_index": 13,
+            "similarity_score": 0.7741,
+            "claim_text": "Cutting out sugar and acidic food kills cancer",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "AFP Fact Check",
+                        "site": "factcheck.afp.com"
+                    },
+                    "url": "https://factcheck.afp.com/doc.afp.com.33RH3BB",
+                    "title": "Experts say video misleads with claims about links between cancer ...",
+                    "reviewDate": "2023-08-21T14:52:00Z",
+                    "textualRating": "Misleading",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Cutting out sugar and acidic food kills cancer",
+                "claimant": "Lucy's Natural",
+                "claimDate": "2023-05-31T00:00:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "AFP Fact Check",
+                            "site": "factcheck.afp.com"
+                        },
+                        "url": "https://factcheck.afp.com/doc.afp.com.33RH3BB",
+                        "title": "Experts say video misleads with claims about links between cancer ...",
+                        "reviewDate": "2023-08-21T14:52:00Z",
+                        "textualRating": "Misleading",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 4,
+            "original_index": 1,
+            "similarity_score": 0.7281,
+            "claim_text": "Sugar is linked to ADHD in infants and conditions like dementia, Alzheimer’s, glaucoma, skin aging, insomnia, and diabetes in adults. Excess sugar may also contribute to cancer.",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "FACTLY",
+                        "site": "factly.in"
+                    },
+                    "url": "https://factly.in/there-isnt-a-direct-cause-and-effect-link-between-consuming-sugar-and-diseases-like-cancer-alzheimers-or-adhd/",
+                    "title": "There isn't a direct cause-and-effect link between consuming sugar ...",
+                    "reviewDate": "2024-02-29T00:00:00Z",
+                    "textualRating": "MISLEADING",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Sugar is linked to ADHD in infants and conditions like dementia, Alzheimer’s, glaucoma, skin aging, insomnia, and diabetes in adults. Excess sugar may also contribute to cancer.",
+                "claimant": "SOCIAL MEDIA POST",
+                "claimDate": "2024-02-09T00:00:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "FACTLY",
+                            "site": "factly.in"
+                        },
+                        "url": "https://factly.in/there-isnt-a-direct-cause-and-effect-link-between-consuming-sugar-and-diseases-like-cancer-alzheimers-or-adhd/",
+                        "title": "There isn't a direct cause-and-effect link between consuming sugar ...",
+                        "reviewDate": "2024-02-29T00:00:00Z",
+                        "textualRating": "MISLEADING",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 5,
+            "original_index": 5,
+            "similarity_score": 0.6598,
+            "claim_text": "Cutting out refined sugar and eating an alkaline diet will starve cancer cells.",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "Full Fact",
+                        "site": "fullfact.org"
+                    },
+                    "url": "https://fullfact.org/health/sugar-cancer-alkaline-diet/",
+                    "title": "Sugar-free alkaline diets won't 'starve' cancer – Full Fact",
+                    "reviewDate": "2023-06-15T00:00:00Z",
+                    "textualRating": "Cutting out refined sugar will not mean the body has no glucose, which is what the cancer cells use for energy. There is no strong evidence that the ‘alkaline’ diet is effective in the treatment or prevention of cancer.",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Cutting out refined sugar and eating an alkaline diet will starve cancer cells.",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "Full Fact",
+                            "site": "fullfact.org"
+                        },
+                        "url": "https://fullfact.org/health/sugar-cancer-alkaline-diet/",
+                        "title": "Sugar-free alkaline diets won't 'starve' cancer – Full Fact",
+                        "reviewDate": "2023-06-15T00:00:00Z",
+                        "textualRating": "Cutting out refined sugar will not mean the body has no glucose, which is what the cancer cells use for energy. There is no strong evidence that the ‘alkaline’ diet is effective in the treatment or prevention of cancer.",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 6,
+            "original_index": 2,
+            "similarity_score": 0.6551,
+            "claim_text": "Artificial sweeteners “are proven to cause cancer”; “people in the 1930s ate cake, cookies and ice cream with SUGAR. And they were healthy”",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "Science Feedback",
+                        "site": "science.feedback.org"
+                    },
+                    "url": "https://science.feedback.org/review/evidence-artificial-sweeteners-like-aspartame-cause-cancer-lacks-support-according-review-from-who-agencies/",
+                    "title": "Claim that artificial sweeteners like aspartame cause cancer lacks ...",
+                    "reviewDate": "2024-03-16T00:00:00Z",
+                    "textualRating": "Unsupported",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Artificial sweeteners “are proven to cause cancer”; “people in the 1930s ate cake, cookies and ice cream with SUGAR. And they were healthy”",
+                "claimant": "Social Media User",
+                "claimDate": "2024-03-21T00:00:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "Science Feedback",
+                            "site": "science.feedback.org"
+                        },
+                        "url": "https://science.feedback.org/review/evidence-artificial-sweeteners-like-aspartame-cause-cancer-lacks-support-according-review-from-who-agencies/",
+                        "title": "Claim that artificial sweeteners like aspartame cause cancer lacks ...",
+                        "reviewDate": "2024-03-16T00:00:00Z",
+                        "textualRating": "Unsupported",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 7,
+            "original_index": 4,
+            "similarity_score": 0.6471,
+            "claim_text": "Cancer can disappear by quitting sugar and consuming lemon and coconut oil",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "THIP Media",
+                        "site": "thip.media"
+                    },
+                    "url": "https://www.thip.media/health-news-fact-check/fact-check-can-cancer-disappear-by-quitting-sugar-and-consuming-lemon-and-coconut-oil/32017/",
+                    "title": "Fact Check: Can Cancer disappear by quitting sugar and consuming...",
+                    "reviewDate": "2022-07-07T00:00:00Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Cancer can disappear by quitting sugar and consuming lemon and coconut oil",
+                "claimant": "Social Media user",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "THIP Media",
+                            "site": "thip.media"
+                        },
+                        "url": "https://www.thip.media/health-news-fact-check/fact-check-can-cancer-disappear-by-quitting-sugar-and-consuming-lemon-and-coconut-oil/32017/",
+                        "title": "Fact Check: Can Cancer disappear by quitting sugar and consuming...",
+                        "reviewDate": "2022-07-07T00:00:00Z",
+                        "textualRating": "False",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 8,
+            "original_index": 9,
+            "similarity_score": 0.6212,
+            "claim_text": "Cancer cells cannot live in the presence of oxygen and can be starved with a low-sugar diet.",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "AAP",
+                        "site": "aap.com.au"
+                    },
+                    "url": "https://www.aap.com.au/factcheck/false-cancer-claims-about-oxygen-and-sugar-spread-in-fiji/",
+                    "title": "False cancer claims about oxygen and sugar spread in Fiji",
+                    "reviewDate": "2025-03-31T16:15:08Z",
+                    "textualRating": "False. Cancer cells can grow in oxygen and limiting dietary glucose won't affect their growth.",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Cancer cells cannot live in the presence of oxygen and can be starved with a low-sugar diet.",
+                "claimant": "Social media user",
+                "claimDate": "2025-03-18T00:00:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "AAP",
+                            "site": "aap.com.au"
+                        },
+                        "url": "https://www.aap.com.au/factcheck/false-cancer-claims-about-oxygen-and-sugar-spread-in-fiji/",
+                        "title": "False cancer claims about oxygen and sugar spread in Fiji",
+                        "reviewDate": "2025-03-31T16:15:08Z",
+                        "textualRating": "False. Cancer cells can grow in oxygen and limiting dietary glucose won't affect their growth.",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 9,
+            "original_index": 0,
+            "similarity_score": 0.6157,
+            "claim_text": "Eating a no-sugar diet, hot lemon water, coconut oil cure cancer",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "AFP Fact Check",
+                        "site": "factcheck.afp.com"
+                    },
+                    "url": "https://factcheck.afp.com/eating-no-sugar-diet-does-not-cause-cancer-cells-die-naturally",
+                    "title": "Eating a no-sugar diet does not cause cancer cells to 'die naturally'",
+                    "reviewDate": "2019-11-08T05:30:00Z",
+                    "textualRating": "FALSE",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Eating a no-sugar diet, hot lemon water, coconut oil cure cancer",
+                "claimant": "multiple sources",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "AFP Fact Check",
+                            "site": "factcheck.afp.com"
+                        },
+                        "url": "https://factcheck.afp.com/eating-no-sugar-diet-does-not-cause-cancer-cells-die-naturally",
+                        "title": "Eating a no-sugar diet does not cause cancer cells to 'die naturally'",
+                        "reviewDate": "2019-11-08T05:30:00Z",
+                        "textualRating": "FALSE",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        },
+        {
+            "rank": 10,
+            "original_index": 3,
+            "similarity_score": 0.613,
+            "claim_text": "Sugar causes ADHD in babies, dementia and Alzheimer's in adults, cancer",
+            "claim_reviews": [
+                {
+                    "publisher": {
+                        "name": "Science Feedback",
+                        "site": "science.feedback.org"
+                    },
+                    "url": "https://science.feedback.org/review/viral-video-inaccurate-claims-sugar-causes-medical-conditions-cancer-adhd/",
+                    "title": "Viral video makes inaccurate claims regarding sugar; suggests it ...",
+                    "reviewDate": "2023-09-15T00:00:00Z",
+                    "textualRating": "Misleading",
+                    "languageCode": "en"
+                }
+            ],
+            "original_record": {
+                "text": "Sugar causes ADHD in babies, dementia and Alzheimer's in adults, cancer",
+                "claimant": "Social media users",
+                "claimDate": "2023-10-27T00:00:00Z",
+                "claimReview": [
+                    {
+                        "publisher": {
+                            "name": "Science Feedback",
+                            "site": "science.feedback.org"
+                        },
+                        "url": "https://science.feedback.org/review/viral-video-inaccurate-claims-sugar-causes-medical-conditions-cancer-adhd/",
+                        "title": "Viral video makes inaccurate claims regarding sugar; suggests it ...",
+                        "reviewDate": "2023-09-15T00:00:00Z",
+                        "textualRating": "Misleading",
+                        "languageCode": "en"
+                    }
+                ]
+            }
+        }
+    ]
+}

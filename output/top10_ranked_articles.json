@@ -1,0 +1,108 @@
+{
+    "user_claim": "sugar cause cancer",
+    "ranker": "MedCPT",
+    "total_ranked_items": 108,
+    "top_n": 10,
+    "results": [
+        {
+            "pmid": "34536637",
+            "title": "Simple sugar intake and cancer incidence, cancer mortality and all-cause mortality: A cohort study from the PREDIMED trial.",
+            "abstract": "OBJECTIVE: To examine associations between intake of simple sugars and cancer incidence, cancer mortality, and total mortality in a prospective cohort study based on the PREDIMED trial conducted from 2003 to 2010. METHODS: Participants were older individuals at high cardiovascular risk. Exposures were total sugar, glucose and fructose from solid or liquid sources, and fructose from fruit and 100% fruit juice. Cancer incidence was the primary outcome; cancer mortality and all-cause mortality were secondary outcomes. Multivariable-adjusted, time-dependent Cox proportional hazard models were used. RESULTS: Of 7447 individuals enrolled, 7056 (94.7%) were included (57.6% women, aged 67.0 ± 6.2 years). 534 incident cancers with 152 cancer deaths and 409 all-cause deaths were recorded after a median follow-up of 6 years. Intake of simple sugars in solid form was unrelated to outcomes. Higher cancer incidence was found per 5 g/day increase in intake of liquid sugars, with multivariable-adjusted HR of 1.08 (95% CI, 1.03-1.13) for total liquid sugar, 1.19 (95% CI, 1.07-1.31) for liquid glucose, 1.14 (95% CI, 1.05-1.23) for liquid fructose, and 1.39 (95% CI, 1.10-1.74) for fructose from fruit juice. Cancer and all-cause mortality increased to a similar extent with intake of all sugars in liquid form. In categorical models, cancer risk was dose-related for all liquid sugars. CONCLUSIONS: Simple sugar intake in drinks and fruit juice was associated with an increased risk of overall cancer incidence and mortality and all-cause mortality. This suggests that sugary beverages are a modifiable risk factor for cancer and all-cause mortality.",
+            "journal": "Clinical nutrition (Edinburgh, Scotland)",
+            "publication_date": "2021 Oct",
+            "doi": "10.1016/j.clnu.2021.07.031",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/34536637/",
+            "medcpt_score": 15.30026626586914
+        },
+        {
+            "pmid": "40744393",
+            "title": "Dietary sugar intervention: A promising approach for cancer therapy.",
+            "abstract": "Cancer constitutes a significant global health challenge, with altered metabolism being a hallmark feature of cancer cells. Diet can directly modulate systemic metabolite levels, thereby exerting both direct and indirect influences on tumor progression. The primary mechanisms include: (1) directly altering signaling pathways related to tumor cell proliferation or apoptosis, (2) indirectly affecting tumor progression by modulating nutrient availability or immune cell function in the tumor microenvironment, and (3) influencing tumor development through changes in gut microbiota composition or metabolic activity. Dietary sugars, as integral components of nutritional intake, play crucial roles in providing energy and participating in metabolism and signaling processes. Building upon this understanding, our discussion delves into the impact and mechanisms of dietary sugars, including glucose, fructose, and mannose, on tumors, and investigates potential dietary interventions. We also summarize current clinical applications of these dietary interventions, hoping to contribute to the conceptualization of personalized dietary treatment plans for individuals grappling with cancer.",
+            "journal": "Biochimica et biophysica acta. Reviews on cancer",
+            "publication_date": "2025 Oct",
+            "doi": "10.1016/j.bbcan.2025.189402",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40744393/",
+            "medcpt_score": 15.153949737548828
+        },
+        {
+            "pmid": "37182401",
+            "title": "Total sugar, added sugar, fructose, and sucrose intake and all-cause, cardiovascular, and cancer mortality: A systematic review and dose-response meta-analysis of prospective cohort studies.",
+            "abstract": "OBJECTIVES: We performed a systematic review and dose-response meta-analysis to assess the association of total sugars, added sugars, fructose, and sucrose with all-cause, cardiovascular disease (CVD), and cancer mortality. METHODS: We searched PubMed, Embase, and Web of Science for prospective cohort studies up to May 10, 2022. Pooled relative risks and 95% CIs were calculated by random effect models, and the linear and non-linear dose-response associations were explored by restricted cubic splines. RESULTS: Comparing the highest with the lowest categories of total sugars, the summary RR was 1.09 (95% CI, 1.02-1.15; I2 = 71.9%) for all-cause mortality, 1.10 (1.02-1.18; I2 = 12.7%) for CVD mortality, and 1.00 (0.94-1.05; I2 = 0) for cancer mortality. For fructose, the summary relative risk was 1.09 (1.03-1.16; I2 = 58.4%) for all-cause mortality, 1.11 (1.03-1.20; I2 = 37.4%) for CVD mortality, and 1.00 (0.95-1.06; I2 = 0) for cancer mortality. Restricted cubic splines found non-linear associations of total sugars and fructose with all-cause and CVD mortality (P for non-linearity < 0.001). A significant increment in risk of all-cause and CVD mortality was observed with >10% energy intake to 20% energy intake for total sugars and fructose. No association was found for the added sugars and sucrose with all-cause, CVD, and cancer mortality. CONCLUSIONS: Increased intake of total sugars and fructose is associated with all-cause and CVD mortality but not associated with cancer mortality, which could have implications for guideline recommendations regarding the risk of mortality related to sugar intake.",
+            "journal": "Nutrition (Burbank, Los Angeles County, Calif.)",
+            "publication_date": "2023 Jul",
+            "doi": "10.1016/j.nut.2023.112032",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37182401/",
+            "medcpt_score": 14.990913391113281
+        },
+        {
+            "pmid": "34267328",
+            "title": "Sugar-sweetened beverage, artificially sweetened beverage and sugar intake and colorectal cancer survival.",
+            "abstract": "BACKGROUND: The influence of a high sugar diet on colorectal cancer (CRC) survival is unclear. METHODS: Among 1463 stage I-III CRC patients from the Nurses' Health Study and Health Professionals Follow-up Study, we estimated hazard ratios (HRs) and 95% confidence intervals (CIs) for CRC-specific and all-cause mortality in relation to intake of post-diagnosis sugar-sweetened beverages (SSB), artificially sweetened beverages (ASB), fruit juice, fructose and other sugars. RESULTS: Over a median 8.0 years, 781 cases died (173 CRC-specific deaths). Multivariable-adjusted HRs for post-diagnosis intake and CRC-specific mortality were 1.21 (95% CI: 0.87-1.68) per 1 serving SSBs per day (serving/day) and 1.24 (95% CI: 0.95-1.63) per 20 grams fructose per day. Significant positive associations for CRC-specific mortality were primarily observed ≤5 years from diagnosis (HR per 1 serving/day of SSBs = 1.59, 95% CI: 1.06-2.38). Significant inverse associations were observed between ASBs and CRC-specific and all-cause mortality (HR for ≥5 versus <1 serving/week = 0.44, 95% CI: 0.26-0.75 and 0.70, 95% CI: 0.55-0.89, respectively). CONCLUSIONS: Higher post-diagnosis intake of SSBs and sugars may be associated with higher CRC-specific mortality, but only up to 5 years from diagnosis, when more deaths were due to CRC. The inverse association between ASBs and CRC-specific mortality warrants further examination.",
+            "journal": "British journal of cancer",
+            "publication_date": "2021 Sep",
+            "doi": "10.1038/s41416-021-01487-7",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/34267328/",
+            "medcpt_score": 14.901816368103027
+        },
+        {
+            "pmid": "22510682",
+            "title": "Added sugar, glycemic index and load in colon cancer risk.",
+            "abstract": "PURPOSE OF REVIEW: There is a growing body of in-vivo evidences that sucrose-rich diets cause mutations in the rat colon epithelium, with several biological mechanism hypothesized, but epidemiological studies have yielded conflicting results. In order to provide a quantification of the magnitude of the risk of colon cancer for high intake of added sugar, high dietary glycemic index and glycemic load, we performed a meta-analysis based on a systematic review of the literature to date. RECENT FINDINGS: Recent epidemiological data indicate a lack of association between high intake of added sugar, high-glycemic index and glycemic load diets and risk of colon cancer. SUMMARY: There is no consistent evidence from epidemiological studies, although a modest excess risk emerged in case-control studies, that added sugars, dietary glycemic index and glycemic load are associated with increased risk of colon cancer, independently from their effect on energy intake, overweight, obesity and diabetes, which are related to excess colon cancer risk.",
+            "journal": "Current opinion in clinical nutrition and metabolic care",
+            "publication_date": "2012 Jul",
+            "doi": "10.1097/MCO.0b013e3283539f81",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/22510682/",
+            "medcpt_score": 14.887002944946289
+        },
+        {
+            "pmid": "9806115",
+            "title": "Sugar consumption and human cancer in sites other than the digestive tract.",
+            "abstract": "In order to assess the relationship between dietary intake of sugar and cancer a comprehensive search of the scientific literature was undertaken. An earlier publication details an analysis of studies relating to cancers of the digestive tract (Burley, 1997). Here, a total of 69 publications were reviewed which reported the results of ecological, case-control or cohort studies which had assessed the relationship between dietary sugar intake or sucrose-containing foods and risk of cancer at other sites. Cancer sites reviewed included the breast, pancreas, prostate, testis, female reproductive system, lung and upper aerodigestive tract and bladder. For most of these cancer sites the number of studies was insufficient to reach a conclusion. For breast cancer, the data on international per capita sugar intakes suggest a consistent positive correlation with breast cancer mortality rates. However, this relationship is not consistent in within-country ecological studies or in case-control studies, in which sugar intakes have been assessed as mono- and disaccharides or as sucrose. There is some suggestion of a weak increase in risk of breast cancer with high consumption of sucrose-containing foods, such as cakes and biscuits. However, these foods provide a range of other nutrients, particularly fat, which may also be implicated in the development of breast cancer, and further studies specifically designed to address this area are required. It is apparent that there is insufficient evidence to conclude whether sugar has a role in cancer at any site.",
+            "journal": "European journal of cancer prevention : the official journal of the European Cancer Prevention Organisation (ECP)",
+            "publication_date": "1998 Aug",
+            "doi": "10.1097/00008469-199808000-00002",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/9806115/",
+            "medcpt_score": 14.618279457092285
+        },
+        {
+            "pmid": "29788891",
+            "title": "Targeting Sugar Uptake and Metabolism for Cancer Identification and Therapy: An Overview.",
+            "abstract": "Metabolic deregulations have emerged as a cancer characteristic, opening a broad avenue for strategies and tools to target cancer through sugar uptake and metabolism. High expression levels of sugar transporters in cancer cells offered glycoconjugation as an approach to achieve enhanced cellular accumulation of drugs and imaging agents, with the sugar moiety anchoring the bioactive cargo to cancer cells. On the other hand, high demand for sugar nutrients in cancers provided a new avenue to target cancer cells with metabolic or sugar uptake inhibitors to induce cancer cells starvation or death. This overview summarizes recent advances in targeting cancer cells through sugar transport for cancer detection and therapy.",
+            "journal": "Current topics in medicinal chemistry",
+            "publication_date": "2018",
+            "doi": "10.2174/1568026618666180523110837",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/29788891/",
+            "medcpt_score": 14.43336009979248
+        },
+        {
+            "pmid": "32936876",
+            "title": "Sugar intake and cancer risk: when epidemiologic uncertainty meets biological plausibility.",
+            "abstract": "",
+            "journal": "The American journal of clinical nutrition",
+            "publication_date": "2020 Nov 11",
+            "doi": "10.1093/ajcn/nqaa261",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/32936876/",
+            "medcpt_score": 14.103776931762695
+        },
+        {
+            "pmid": "37019448",
+            "title": "Dietary sugar consumption and health: umbrella review.",
+            "abstract": "OBJECTIVE: To evaluate the quality of evidence, potential biases, and validity of all available studies on dietary sugar consumption and health outcomes. DESIGN: Umbrella review of existing meta-analyses. DATA SOURCES: PubMed, Embase, Web of Science, Cochrane Database of Systematic Reviews, and hand searching of reference lists. INCLUSION CRITERIA: Systematic reviews and meta-analyses of randomised controlled trials, cohort studies, case-control studies, or cross sectional studies that evaluated the effect of dietary sugar consumption on any health outcomes in humans free from acute or chronic diseases. RESULTS: The search identified 73 meta-analyses and 83 health outcomes from 8601 unique articles, including 74 unique outcomes in meta-analyses of observational studies and nine unique outcomes in meta-analyses of randomised controlled trials. Significant harmful associations between dietary sugar consumption and 18 endocrine/metabolic outcomes, 10 cardiovascular outcomes, seven cancer outcomes, and 10 other outcomes (neuropsychiatric, dental, hepatic, osteal, and allergic) were detected. Moderate quality evidence suggested that the highest versus lowest dietary sugar consumption was associated with increased body weight (sugar sweetened beverages) (class IV evidence) and ectopic fatty accumulation (added sugars) (class IV evidence). Low quality evidence indicated that each serving/week increment of sugar sweetened beverage consumption was associated with a 4% higher risk of gout (class III evidence) and each 250 mL/day increment of sugar sweetened beverage consumption was associated with a 17% and 4% higher risk of coronary heart disease (class II evidence) and all cause mortality (class III evidence), respectively. In addition, low quality evidence suggested that every 25 g/day increment of fructose consumption was associated with a 22% higher risk of pancreatic cancer (class III evidence). CONCLUSIONS: High dietary sugar consumption is generally more harmful than beneficial for health, especially in cardiometabolic disease. Reducing the consumption of free sugars or added sugars to below 25 g/day (approximately 6 teaspoons/day) and limiting the consumption of sugar sweetened beverages to less than one serving/week (approximately 200-355 mL/week) are recommended to reduce the adverse effect of sugars on health. SYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42022300982.",
+            "journal": "BMJ (Clinical research ed.)",
+            "publication_date": "2023 Apr 05",
+            "doi": "10.1136/bmj-2022-071609",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37019448/",
+            "medcpt_score": 14.01285457611084
+        },
+        {
+            "pmid": "38288611",
+            "title": "Unlocking the power of sugar: carbohydrate ligands as key players in nanotherapeutic-assisted targeted cancer therapy.",
+            "abstract": "Cancer cells need as much as 40-times more sugar than their normal cell counterparts. This sugar demand is attained by the excessive expression of inimitable transporters on the surface of cancer cells, driven by their voracious appetite for carbohydrates. Nanotechnological advances drive research utilizing ligand-directed therapeutics and diverse carbohydrate analogs. The precise delivery of these therapeutic cargos not only mitigates toxicity associated with chemotherapy but also reduces the grim toll of mortality and morbidity among patients. This in-depth review explores the potential of these ligands in advanced cancer treatment using nanoparticles. It offers a broader perspective beyond the usual ways we deliver drugs, potentially changing the way we fight cancer.",
+            "journal": "Nanomedicine (London, England)",
+            "publication_date": "2024 Feb",
+            "doi": "10.2217/nnm-2023-0276",
+            "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38288611/",
+            "medcpt_score": 13.803702354431152
+        }
+    ]
+}

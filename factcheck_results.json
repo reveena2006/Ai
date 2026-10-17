@@ -1,0 +1,318 @@
+{
+    "user_claim": "sugar cause cancer",
+    "source": "Google Fact Check API",
+    "total_records": 18,
+    "claims": [
+        {
+            "text": "Eating a no-sugar diet, hot lemon water, coconut oil cure cancer",
+            "claimant": "multiple sources",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "AFP Fact Check",
+                        "site": "factcheck.afp.com"
+                    },
+                    "url": "https://factcheck.afp.com/eating-no-sugar-diet-does-not-cause-cancer-cells-die-naturally",
+                    "title": "Eating a no-sugar diet does not cause cancer cells to 'die naturally'",
+                    "reviewDate": "2019-11-08T05:30:00Z",
+                    "textualRating": "FALSE",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Sugar is linked to ADHD in infants and conditions like dementia, Alzheimer’s, glaucoma, skin aging, insomnia, and diabetes in adults. Excess sugar may also contribute to cancer.",
+            "claimant": "SOCIAL MEDIA POST",
+            "claimDate": "2024-02-09T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "FACTLY",
+                        "site": "factly.in"
+                    },
+                    "url": "https://factly.in/there-isnt-a-direct-cause-and-effect-link-between-consuming-sugar-and-diseases-like-cancer-alzheimers-or-adhd/",
+                    "title": "There isn't a direct cause-and-effect link between consuming sugar ...",
+                    "reviewDate": "2024-02-29T00:00:00Z",
+                    "textualRating": "MISLEADING",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Artificial sweeteners “are proven to cause cancer”; “people in the 1930s ate cake, cookies and ice cream with SUGAR. And they were healthy”",
+            "claimant": "Social Media User",
+            "claimDate": "2024-03-21T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Science Feedback",
+                        "site": "science.feedback.org"
+                    },
+                    "url": "https://science.feedback.org/review/evidence-artificial-sweeteners-like-aspartame-cause-cancer-lacks-support-according-review-from-who-agencies/",
+                    "title": "Claim that artificial sweeteners like aspartame cause cancer lacks ...",
+                    "reviewDate": "2024-03-16T00:00:00Z",
+                    "textualRating": "Unsupported",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Sugar causes ADHD in babies, dementia and Alzheimer's in adults, cancer",
+            "claimant": "Social media users",
+            "claimDate": "2023-10-27T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Science Feedback",
+                        "site": "science.feedback.org"
+                    },
+                    "url": "https://science.feedback.org/review/viral-video-inaccurate-claims-sugar-causes-medical-conditions-cancer-adhd/",
+                    "title": "Viral video makes inaccurate claims regarding sugar; suggests it ...",
+                    "reviewDate": "2023-09-15T00:00:00Z",
+                    "textualRating": "Misleading",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cancer can disappear by quitting sugar and consuming lemon and coconut oil",
+            "claimant": "Social Media user",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "THIP Media",
+                        "site": "thip.media"
+                    },
+                    "url": "https://www.thip.media/health-news-fact-check/fact-check-can-cancer-disappear-by-quitting-sugar-and-consuming-lemon-and-coconut-oil/32017/",
+                    "title": "Fact Check: Can Cancer disappear by quitting sugar and consuming...",
+                    "reviewDate": "2022-07-07T00:00:00Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cutting out refined sugar and eating an alkaline diet will starve cancer cells.",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Full Fact",
+                        "site": "fullfact.org"
+                    },
+                    "url": "https://fullfact.org/health/sugar-cancer-alkaline-diet/",
+                    "title": "Sugar-free alkaline diets won't 'starve' cancer – Full Fact",
+                    "reviewDate": "2023-06-15T00:00:00Z",
+                    "textualRating": "Cutting out refined sugar will not mean the body has no glucose, which is what the cancer cells use for energy. There is no strong evidence that the ‘alkaline’ diet is effective in the treatment or prevention of cancer.",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Stopping all sugar intake will cause all cancer cells in your body to die.",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Full Fact",
+                        "site": "fullfact.org"
+                    },
+                    "url": "https://fullfact.org/online/sugar-lemon-coconut-not-cancer-cures/",
+                    "title": "Lemon juice, coconut oil and stopping all sugar intake won't cure ...",
+                    "reviewDate": "2019-04-12T00:00:00Z",
+                    "textualRating": "There’s no evidence that this will lower the risk of getting cancer, or boost the chances of surviving if you are diagnosed.",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Stopping Sugar from diet will kill cancer cells in body",
+            "claimant": "Social Media Users",
+            "claimDate": "2021-07-21T18:30:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "THIP Media",
+                        "site": "thip.media"
+                    },
+                    "url": "https://www.thip.media/health-news-fact-check/fact-check-will-stopping-sugar-from-diet-kill-cancer-cells-in-your-body/22064/",
+                    "title": "Will stopping sugar from diet kill Cancer cells in your body?",
+                    "reviewDate": "2021-07-22T10:06:41Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Drinking hot lemon water or three spoons of organic coconut oil daily in addition to not taking sugar can cure cancer.",
+            "claimant": "FACEBOOK POST",
+            "claimDate": "2019-04-20T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "FACTLY",
+                        "site": "factly.in"
+                    },
+                    "url": "https://factly.in/no-scientific-basis-for-claims-of-curing-cancer-with-a-sugar-free-diet-drinking-hot-lemon-water-and-organic-coconut-oil/",
+                    "title": "No scientific basis for claims of curing cancer with a sugar-free diet ...",
+                    "reviewDate": "2019-07-10T00:00:00Z",
+                    "textualRating": "FALSE",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cancer cells cannot live in the presence of oxygen and can be starved with a low-sugar diet.",
+            "claimant": "Social media user",
+            "claimDate": "2025-03-18T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "AAP",
+                        "site": "aap.com.au"
+                    },
+                    "url": "https://www.aap.com.au/factcheck/false-cancer-claims-about-oxygen-and-sugar-spread-in-fiji/",
+                    "title": "False cancer claims about oxygen and sugar spread in Fiji",
+                    "reviewDate": "2025-03-31T16:15:08Z",
+                    "textualRating": "False. Cancer cells can grow in oxygen and limiting dietary glucose won't affect their growth.",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Sodium bicarbonate is a lethal poison to all cancers.",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Full Fact",
+                        "site": "fullfact.org"
+                    },
+                    "url": "https://fullfact.org/online/sodium-bicarbonate-cancer-cure/",
+                    "title": "Sodium bicarbonate is not 'lethal' to all cancers – Full Fact",
+                    "reviewDate": "2023-01-10T00:00:00Z",
+                    "textualRating": "There’s no evidence sodium bicarbonate can be used to cure cancer. Some studies have looked at its use in reducing tumour pH levels, but none have suggested it could be used as a cancer treatment in itself.",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Is diet soda containing the sweetener aspartame \"going to kill me\"?",
+            "claimant": "Ask SciCheck",
+            "claimDate": "2023-10-02T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "FactCheck.org",
+                        "site": "factcheck.org"
+                    },
+                    "url": "https://www.factcheck.org/2023/10/no-proven-health-risks-from-aspartame-but-also-no-proven-benefits/",
+                    "title": "No Proven Health Risks from Aspartame, But Also No Proven Benefits",
+                    "textualRating": "We Explain the Research",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "it is possible to cure cancer with lemon and coconut oil",
+            "claimant": "Social Media User",
+            "claimDate": "2026-06-01T18:30:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "THIP Media",
+                        "site": "thip.media"
+                    },
+                    "url": "https://www.thip.media/health-news-fact-check/fact-check-is-it-possible-to-cure-cancer-with-lemon-and-coconut-oil/98922/",
+                    "title": "Is it possible to cure cancer with lemon and coconut oil? - THIP",
+                    "reviewDate": "2026-06-02T06:40:00Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cutting out sugar and acidic food kills cancer",
+            "claimant": "Lucy's Natural",
+            "claimDate": "2023-05-31T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "AFP Fact Check",
+                        "site": "factcheck.afp.com"
+                    },
+                    "url": "https://factcheck.afp.com/doc.afp.com.33RH3BB",
+                    "title": "Experts say video misleads with claims about links between cancer ...",
+                    "reviewDate": "2023-08-21T14:52:00Z",
+                    "textualRating": "Misleading",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cancer can be cured using tips from the message",
+            "claimDate": "2023-05-10T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Telugu Post",
+                        "site": "telugupost.com"
+                    },
+                    "url": "https://www.telugupost.com/english-factcheck/viral-message-of-a-surgeon-on-steps-to-cure-cancer-is-a-hoax-1475660",
+                    "title": "Fact Check: Viral message of a surgeon on steps to cure cancer is a ...",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Cancer will disappear if patients stop eating sugar, drink lemon juice before meals for three months and take spoonfuls of coconut oil morning and night.",
+            "claimant": "Dr Gupta",
+            "claimDate": "2019-01-04T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "Africa Check",
+                        "site": "africacheck.org"
+                    },
+                    "url": "https://africacheck.org/fact-checks/spotchecks/beware-false-cancer-cures-dr-gupta-facebook",
+                    "title": "Beware false cancer cures from 'Dr Gupta' on Facebook",
+                    "reviewDate": "2019-04-08T00:00:00Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "False claims of curing cancer",
+            "claimant": "FB Page: Holishealth.com",
+            "claimDate": "2019-07-09T12:43:53Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "site": "vishvasnews.com"
+                    },
+                    "url": "https://www.vishvasnews.com/english/health/fact-check-false-claims-of-curing-cancer-getting-viral/",
+                    "title": "Fact Check: False claims of curing cancer getting viral - Vishvas News",
+                    "reviewDate": "2019-07-09T12:43:53Z",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        },
+        {
+            "text": "Says cutting out sugar and drinking hot lemon water will cure cancer.",
+            "claimant": "Facebook posts",
+            "claimDate": "2019-01-03T00:00:00Z",
+            "claimReview": [
+                {
+                    "publisher": {
+                        "name": "PolitiFact",
+                        "site": "politifact.com"
+                    },
+                    "url": "https://politifact.com/factchecks/2020/apr/09/facebook-posts/no-evidence-these-home-remedies-will-cure-cancer-h/",
+                    "title": "No evidence these home remedies will cure cancer, health experts ...",
+                    "textualRating": "False",
+                    "languageCode": "en"
+                }
+            ]
+        }
+    ]
+}

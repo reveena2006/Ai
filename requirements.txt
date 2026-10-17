@@ -1,0 +1,8 @@
+
+streamlit
+pandas
+requests
+biopython
+torch
+transformers
+sentence-transformers
