@@ -28,34 +28,106 @@ STOP_WORDS = {
     "causes", "cause", "causing", "caused",
     "grow", "growth", "grows", "growing",
     "increase", "increases", "increased",
-    "increasing", "affect", "affects"
+    "increasing", "affect", "affects",
+    # Conversational scaffolds & filler nouns
+    "one", "two", "reason", "reasons", "factor", "factors",
+    "thing", "things", "way", "ways", "lead", "leads", "leading",
+    "really", "actually", "true", "false", "good", "bad",
+    "help", "helps", "helping", "problem", "problems", "issue", "issues",
+    "relate", "related", "relation", "means", "mean"
 }
+
+COMMON_SYNONYMS = {
+    "late sleep": '("late bedtime" OR "sleep duration" OR "circadian")',
+    "sleeping late": '("late bedtime" OR "sleep deprivation")',
+    "sleep late": '("late bedtime" OR "sleep duration")',
+    "lack of sleep": '("sleep deprivation" OR "short sleep duration")',
+    "high sugar": '("hyperglycemia" OR "diabetes")',
+    "belly fat": '("abdominal adiposity" OR "obesity")',
+    "high bp": '("hypertension")',
+}
+
+
+QUESTION_STARTERS = [
+    r"^is\s+it\s+true\s+that\s+",
+    r"^do\s+", r"^does\s+", r"^did\s+",
+    r"^can\s+", r"^could\s+", r"^should\s+",
+    r"^would\s+", r"^will\s+", r"^is\s+",
+    r"^are\s+", r"^was\s+", r"^were\s+",
+    r"^why\s+does\s+", r"^why\s+do\s+",
+    r"^how\s+does\s+", r"^what\s+causes\s+",
+    r"^what\s+is\s+the\s+link\s+between\s+",
+    r"^tell\s+me\s+if\s+"
+]
+
+FILLER_PATTERNS = [
+    r"\bone\s+of\s+the\s+reasons?\s+(for|of|behind)\b",
+    r"\bone\s+of\s+the\s+causes?\s+(of|for|behind)\b",
+    r"\bone\s+of\s+the\s+factors?\s+(in|for|of)\b",
+    r"\ba\s+major\s+factor\s+(in|for|of)\b",
+    r"\ba\s+leading\s+cause\s+of\b",
+    r"\ba\s+reason\s+for\b",
+    r"\bthe\s+reason\s+for\b",
+    r"\blead\s+to\b",
+    r"\bleads\s+to\b",
+    r"\bleading\s+to\b",
+    r"\bresponsible\s+for\b",
+]
+
+
+def clean_conversational_claim(claim_text):
+    """
+    Remove question starters, conversational filler phrases, and punctuation.
+    """
+    text = claim_text.strip().lower()
+    text = re.sub(r"[?!.,;]+$", "", text)
+    for pattern in QUESTION_STARTERS:
+        text = re.sub(pattern, "", text, flags=re.IGNORECASE)
+    for pattern in FILLER_PATTERNS:
+        text = re.sub(pattern, " ", text, flags=re.IGNORECASE)
+    return text.strip()
 
 
 def generate_search_queries(user_claim):
     """
-    Generate multiple PubMed search queries from one claim.
+    Option A: Clean concepts passed unquoted to PubMed for native MeSH ATM translation.
+    Removes conversational fluff ("do", "is it true that", "one of the reason") and
+    passes space-separated clean terms without forced ANDs or quotes.
     """
-    queries = [user_claim.strip()]
+    cleaned = clean_conversational_claim(user_claim)
 
-    words = re.findall(r"\b[a-zA-Z]+\b", user_claim.lower())
-
+    words = re.findall(r"\b[a-zA-Z]+\b", cleaned)
     keywords = [
         word for word in words
         if word not in STOP_WORDS and len(word) > 2
     ]
 
-    # Search using the remaining keywords.
+    queries = []
+
+    # 1. Primary Query: Unquoted clean concepts for PubMed Automatic Term Mapping (ATM)
+    # PubMed natively expands unquoted terms into (Concept[MeSH Terms] OR Concept[All Fields])
     if keywords:
         queries.append(" ".join(keywords))
 
-    # Build a broader search using the core concepts.
-    core_terms = list(dict.fromkeys(keywords))
+    # 2. Common colloquial-to-biomedical concept expansions (unquoted for ATM)
+    for layman, medical in COMMON_SYNONYMS.items():
+        if layman in cleaned:
+            layman_words = set(layman.split())
+            remaining = [w for w in keywords if w not in layman_words]
+            if remaining:
+                queries.append(f"{medical} {' '.join(remaining)}")
+            else:
+                queries.append(medical)
 
-    if len(core_terms) >= 2:
-        queries.append(" AND ".join(core_terms))
+    # 3. Core concepts fallback (e.g. if >= 3 keywords, pair primary concepts)
+    if len(keywords) >= 3:
+        queries.append(f"{keywords[0]} {keywords[-1]}")
 
-    # Remove duplicate queries.
+    # Fallback to verbatim claim if all filters returned empty
+    if not queries:
+        queries.append(user_claim.strip())
+
+    # Remove duplicate queries while preserving order.
     unique_queries = []
     seen = set()
 
@@ -67,7 +139,7 @@ def generate_search_queries(user_claim):
             unique_queries.append(query)
             seen.add(key)
 
-    print("\nGenerated PubMed queries:")
+    print("\nGenerated PubMed queries (Option A: ATM-Optimized):")
     for query in unique_queries:
         print(" -", query)
 
@@ -100,6 +172,9 @@ def search_pubmed_query(query):
 
     total_count = int(search_data.get("count", 0))
     pmids = search_data.get("idlist", [])
+    atm_translation = search_data.get("querytranslation", "")
+    if atm_translation:
+        print(f"   [PubMed ATM Translation]: {atm_translation}")
 
     return total_count, pmids
 

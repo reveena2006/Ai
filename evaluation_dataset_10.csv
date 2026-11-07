@@ -1,0 +1,11 @@
+claim,evidence,true_nli_label,true_verdict
+Vitamin C cures the common cold.,"Vitamin C supplementation does not consistently prevent colds in the general population, although regular supplementation may modestly shorten their duration.",contradiction,refuted
+Smoking increases the risk of lung cancer.,Public health evidence identifies tobacco smoking as a major cause of lung cancer.,entailment,supported
+A particular herbal tea prevents diabetes in everyone.,No reliable clinical studies were identified that directly tested this specific tea for diabetes prevention.,neutral,insufficient
+Vaccination can reduce the risk of certain infectious diseases.,Clinical evidence shows that recommended vaccines reduce the risk of their target infections or their severe outcomes.,entailment,supported
+Antibiotics cure viral infections such as influenza.,Antibiotics act against bacteria and do not directly treat viruses such as influenza.,contradiction,refuted
+Regular physical activity can improve cardiovascular health.,Research links regular physical activity with improved cardiovascular fitness and lower risk of several cardiovascular conditions.,entailment,supported
+Drinking lemon water melts body fat without other changes.,There is no good evidence that lemon water itself melts body fat independently of overall diet and energy balance.,contradiction,refuted
+All dietary supplements are safe because they are natural.,"The safety and effectiveness of supplements vary, and natural products can still cause adverse effects or interactions.",contradiction,refuted
+Getting adequate sleep supports health.,"Adequate sleep is associated with normal cognitive, metabolic, and immune function.",entailment,supported
+A newly marketed mushroom extract cures Alzheimer's disease.,The available information does not include reliable clinical evidence establishing that this extract cures Alzheimer's disease.,neutral,insufficient

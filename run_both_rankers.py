@@ -110,10 +110,19 @@ def make_queries(claim):
     if not claim:
         return []
     queries = [claim]
+    # Strip conversational question prefixes and filler phrases (Option A)
     simplified = re.sub(
-        r"^(is|are|does|do|can|could|will|should|what|why|how)\s+",
+        r"^(is it true that|is|are|does|do|can|could|will|would|should|what|why|how)\s+",
         "", claim, flags=re.IGNORECASE
     ).strip(" ?.")
+    simplified = re.sub(
+        r"\bone of the reasons? (for|of|behind)\b",
+        " ", simplified, flags=re.IGNORECASE
+    )
+    simplified = re.sub(
+        r"\bone of the causes? (of|for)\b",
+        " ", simplified, flags=re.IGNORECASE
+    )
     if simplified and simplified.lower() != claim.lower():
         queries.append(simplified)
 
@@ -122,7 +131,8 @@ def make_queries(claim):
         "being", "does", "do", "did", "can", "could", "will", "would",
         "should", "of", "to", "for", "and", "or", "in", "on", "with",
         "about", "it", "this", "that", "generally", "people", "person",
-        "cause", "causes", "causing"
+        "cause", "causes", "causing", "one", "two", "reason", "reasons",
+        "factor", "factors", "leads", "lead", "leading"
     }
     words = re.findall(r"[A-Za-z0-9-]+", simplified)
     keywords = [w for w in words if w.lower() not in stop and len(w) > 2]
@@ -377,7 +387,11 @@ def main():
     print("=" * 60)
     print(" HEALTH MISINFORMATION VERIFICATION SYSTEM")
     print("=" * 60)
-    claim = input("\nEnter a health claim to verify: ").strip()
+    if len(sys.argv) > 1 and sys.argv[1].strip():
+        claim = sys.argv[1].strip()
+        print(f"Health claim to verify: {claim}")
+    else:
+        claim = input("\nEnter a health claim to verify: ").strip()
     if not claim:
         print("No claim entered. Exiting.")
         return
@@ -396,14 +410,19 @@ def main():
     print(f"Initial Google records: {len(factchecks)}")
     print(f"Initial PubMed records: {len(articles)}")
 
-    if len(factchecks) < MIN_GOOGLE_RESULTS or len(articles) < MIN_PUBMED_RESULTS:
-        print("\nOne or both sources returned few records. Expanding searches...")
-        factchecks = merge(
-            factchecks, retrieve_factchecks(claim, expanded=True), "factcheck"
-        )
-        articles = merge(
-            articles, retrieve_pubmed(claim, expanded=True), "article"
-        )
+    need_google_expand = bool(os.getenv("GOOGLE_FACT_CHECK_API_KEY")) and len(factchecks) < MIN_GOOGLE_RESULTS
+    need_pubmed_expand = len(articles) < MIN_PUBMED_RESULTS
+
+    if need_google_expand or need_pubmed_expand:
+        print("\nExpanding search for sources with few initial records...")
+        if need_google_expand:
+            factchecks = merge(
+                factchecks, retrieve_factchecks(claim, expanded=True), "factcheck"
+            )
+        if need_pubmed_expand:
+            articles = merge(
+                articles, retrieve_pubmed(claim, expanded=True), "article"
+            )
 
     save_json(FACTCHECK_FILE, {
         "user_claim": claim,
@@ -427,32 +446,10 @@ def main():
         print("Pipeline stopped because NLI did not complete.")
         return
 
-    # A single optional retry if every usable NLI label is neutral.
+    # If all usable NLI labels are neutral, the Decision Engine will cleanly
+    # evaluate this under the Insufficient Evidence rule without repeating redundant inference.
     if all_usable_nli_neutral():
-        print("\nAll usable NLI labels are neutral; performing one expanded retry.")
-        factchecks = merge(
-            factchecks, retrieve_factchecks(claim, expanded=True), "factcheck"
-        )
-        articles = merge(
-            articles, retrieve_pubmed(claim, expanded=True), "article"
-        )
-        save_json(FACTCHECK_FILE, {
-            "user_claim": claim,
-            "source": "Google Fact Check API",
-            "total_records": len(factchecks),
-            "claims": factchecks,
-        })
-        save_json(PUBMED_FILE, {
-            "user_claim": claim,
-            "source": "PubMed",
-            "articles_fetched": len(articles),
-            "articles": articles,
-        })
-        run_sbert(claim, factchecks)
-        run_medcpt(claim, articles)
-        if not run_nli(claim):
-            print("Second NLI pass failed. No fresh final verdict will be produced.")
-            return
+        print("\nRetrieved evidence provides neutral context; proceeding to Decision Engine.")
 
     # Automatically call decision_engine.py after the NLI stage.
     verdict_ok = run_decision_engine()

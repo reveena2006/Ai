@@ -1,7 +1,5 @@
 {
-    "user_claim": "sugar cause cancer",
-    "model": "cross-encoder/nli-deberta-v3-base",
-    "results": [],
-    "total_input_records": 10,
-    "classified_records": 0
+  "user_claim": "sugar causes cancer",
+  "source": "Google Fact Check",
+  "results": []
 }

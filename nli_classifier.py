@@ -22,8 +22,8 @@ ARTICLE_OUTPUT = OUTPUT_DIR / "nli_articles.json"
 
 MODEL_NAME = "cross-encoder/nli-deberta-v3-base"
 
-BATCH_SIZE = 2
-MAX_EVIDENCE_CHARS = 1200
+BATCH_SIZE = 8
+MAX_EVIDENCE_CHARS = 800
 MAX_RECORDS_PER_SOURCE = 10
 MAX_LENGTH = 384
 
@@ -281,13 +281,14 @@ def get_label_names(model):
 # Classification
 # --------------------------------------------------
 
-def classify_records(records, model, label_names, source_name, user_claim):
+def classify_records(records, model, label_names, source_name, user_claim, max_records=MAX_RECORDS_PER_SOURCE):
     """Classify evidence against the original user claim."""
     if not records:
         print(f"[INFO] No {source_name} records to classify.")
         return []
 
-    records = records[:MAX_RECORDS_PER_SOURCE]
+    if max_records is not None:
+        records = records[:max_records]
     output_by_index = {}
     claim_pairs = []
     valid_indices = []

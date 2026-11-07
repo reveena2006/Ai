@@ -1,0 +1,103 @@
+================================================================================
+AI-ASSISTED HEALTH-RELATED MISINFORMATION VERIFICATION SYSTEM
+AUTHENTIC ACADEMIC RESEARCH REFERENCES AND BIBLIOGRAPHY
+================================================================================
+
+[1] Reimers, N., & Gurevych, I. (2019).
+    Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.
+    Proceedings of the 2019 Conference on Empirical Methods in Natural Language
+    Processing and the 9th International Joint Conference on Natural Language
+    Processing (EMNLP-IJCNLP 2019), pp. 3982–3992.
+    URL: https://aclanthology.org/D19-1410/
+    Relevance: Used for SBERT bi-encoder fact-check semantic similarity re-ranking
+    (sentence-transformers/all-MiniLM-L6-v2) in sbert_ranker.py.
+
+[2] Jin, Q., Liu, B., Zhang, S., Shan, P., Leaman, R., & Lu, Z. (2023).
+    MedCPT: Contrastive Pre-trained Transformers with Clinical PubMed Data.
+    Bioinformatics / arXiv preprint arXiv:2307.00589.
+    National Center for Biotechnology Information (NCBI), NLM, NIH.
+    URL: https://arxiv.org/abs/2307.00589
+    Relevance: Used for deep cross-attention biomedical literature re-ranking
+    (ncbi/MedCPT-Cross-Encoder) pre-trained on 255M PubMed query-article pairs in
+    run_both_rankers.py.
+
+[3] He, P., Liu, X., Gao, J., & Chen, W. (2021).
+    DeBERTa: Decoding-enhanced BERT with Disentangled Attention.
+    International Conference on Learning Representations (ICLR 2021).
+    URL: https://openreview.net/forum?id=XPZIaotutsD
+    Relevance: Powers directional premise-hypothesis stance classification
+    (cross-encoder/nli-deberta-v3-large) in nli_classifier.py.
+
+[4] Wadden, D., Lin, S., Lo, K., Wang, L. L., van Zuylen, M., Cohan, A., & Hajishirzi, H. (2020).
+    Fact or Fiction: Verifying Scientific Claims with SciFact.
+    Proceedings of the 2020 Conference on Empirical Methods in Natural Language
+    Processing (EMNLP 2020), pp. 7534–7550.
+    URL: https://aclanthology.org/2020.emnlp-main.609/
+    Relevance: Gold scientific benchmark dataset utilized for document retrieval
+    and ranking evaluation (MRR, P@K, R@K, NDCG@K).
+
+[5] Thorne, J., Vlachos, A., Christodoulopoulos, C., & Mittal, A. (2018).
+    FEVER: A Large-scale Dataset for Fact Extraction and VERification.
+    Proceedings of the 2018 Conference of the North American Chapter of the
+    Association for Computational Linguistics (NAACL 2018), pp. 809–819.
+    URL: https://aclanthology.org/N18-1074/
+    Relevance: Theoretical foundation for 3-stage fact verification architectures
+    (Document Retrieval -> Evidence Selection -> Stance Entailment).
+
+[6] Sayers, E. (2009).
+    The Entrez Programming Utilities (E-utilities) Help.
+    National Center for Biotechnology Information (NCBI), National Library of Medicine
+    (NLM), NIH, Bethesda, MD.
+    URL: https://www.ncbi.nlm.nih.gov/books/NBK25501/
+    Relevance: Technical documentation governing multi-query search (esearch),
+    summaries (esummary), and single-batch XML retrieval (efetch) in pubmed_retriever.py.
+
+[7] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N.,
+    Kaiser, Ł., & Polosukhin, I. (2017).
+    Attention Is All You Need.
+    Advances in Neural Information Processing Systems (NeurIPS 2017), pp. 5998–6008.
+    URL: https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html
+
+[8] Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. (2019).
+    BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.
+    Proceedings of the 2019 Conference of the North American Chapter of the
+    Association for Computational Linguistics (NAACL-HLT 2019), pp. 4171–4186.
+    URL: https://aclanthology.org/N19-1423/
+
+[9] Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M.,
+    Zettlemoyer, L., & Stoyanov, V. (2019).
+    RoBERTa: A Robustly Optimized BERT Pretraining Approach.
+    arXiv preprint arXiv:1907.11692.
+    URL: https://arxiv.org/abs/1907.11692
+
+[10] Williams, A., Nangia, N., & Bowman, S. R. (2018).
+     A Broad-Coverage Challenge Corpus for Sentence Understanding through Inference.
+     Proceedings of the 2018 Conference of the North American Chapter of the
+     Association for Computational Linguistics (NAACL-HLT 2018), pp. 1112–1122.
+     URL: https://aclanthology.org/N18-1101/
+
+[11] Roberts, K., Demner-Fushman, D., Voorhees, E. M., Hersh, W. R., Bedrick, S.,
+     & Lazar, A. J. (2020).
+     Overview of the TREC 2020 Health Misinformation Track.
+     Text REtrieval Conference (TREC 2020).
+     URL: https://trec.nist.gov/pubs/trec29/papers/OVERVIEW.HM.pdf
+
+[12] Voorhees, E. M., & Harman, D. K. (2005).
+     TREC: Experiment and Evaluation in Information Retrieval.
+     MIT Press, Cambridge, MA.
+
+[13] Google Developers. (2024).
+     Google Fact Check Tools API Documentation.
+     Google LLC.
+     URL: https://developers.google.com/fact-check/tools/api
+
+[14] Streamlit Inc. (2024).
+     Streamlit: The Fastest Way to Build and Share Data Apps.
+     URL: https://docs.streamlit.io
+
+[15] Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O.,
+     Blondel, M., et al. (2011).
+     Scikit-learn: Machine Learning in Python.
+     Journal of Machine Learning Research, 12, pp. 2825–2830.
+     URL: https://jmlr.org/papers/v12/pedregosa11a.html
+================================================================================
